@@ -184,7 +184,7 @@ def safe_vectorize(pyfunc, *args, **kwargs):
 
     See np.vectorize for documentation
     """
-    return np.vectorize(pyfunc=pyfunc, otypes=[np.float], *args, **kwargs)
+    return np.vectorize(pyfunc=pyfunc, otypes=[float], *args, **kwargs)
 
 
 def safe_entrywise_mult(A, B):
