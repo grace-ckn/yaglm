@@ -3,7 +3,7 @@ Code borrowed from: https://code.activestate.com/recipes/551763/ and adapted to 
 """
 
 from functools import wraps
-from inspect import getargspec, isfunction
+from inspect import getfullargspec, isfunction
 from itertools import starmap  # filter, izip
 
 
@@ -46,7 +46,7 @@ def autoassign(*names, **kwargs):
         sieve = lambda l: filter(lambda nv: nv[0] in names, l)
 
     def decorator(f):
-        fargnames, _, _, fdefaults = getargspec(f)
+        fargnames, _, _, fdefaults = getfullargspec(f)
         # Remove self from fargnames and make sure fdefault is a tuple
         fargnames, fdefaults = fargnames[1:], fdefaults or ()
         defaults = list(sieve(zip(reversed(fargnames), reversed(fdefaults))))
