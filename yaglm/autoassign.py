@@ -46,7 +46,7 @@ def autoassign(*names, **kwargs):
         sieve = lambda l: filter(lambda nv: nv[0] in names, l)
 
     def decorator(f):
-        fargnames, _, _, fdefaults = getfullargspec(f)
+        fargnames, _, _, fdefaults, _,_,_ = getfullargspec(f)
         # Remove self from fargnames and make sure fdefault is a tuple
         fargnames, fdefaults = fargnames[1:], fdefaults or ()
         defaults = list(sieve(zip(reversed(fargnames), reversed(fdefaults))))
